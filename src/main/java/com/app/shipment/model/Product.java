@@ -31,7 +31,7 @@ public class Product {
     private String name;
 
     @Column(name = "SKU", unique = true)
-    private String SKU;
+    private String sku;
 
     @Column(name = "quantity")
     private int quantity;

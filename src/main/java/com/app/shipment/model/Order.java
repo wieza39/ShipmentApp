@@ -54,11 +54,9 @@ public class Order {
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status")
     private OrderStatus orderStatus;
-    
+
     @ManyToOne
     @JoinColumn(name = "order_owner")
     private User user;
-
- //   private Address deliveryAddress;
 
 }
