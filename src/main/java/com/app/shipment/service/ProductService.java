@@ -1,12 +1,16 @@
 package com.app.shipment.service;
 
+import com.app.shipment.exceptions.Duplicate;
+import com.app.shipment.exceptions.EmptyList;
 import com.app.shipment.exceptions.ProductNotFound;
 import com.app.shipment.model.Product;
 import com.app.shipment.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -25,21 +29,51 @@ public class ProductService {
     }
 
     public Optional<Product> getProductById(Long id) {
-        if(id == null) {
+        Optional<Product> product = productRepository.findById(id);
+        if (!product.isPresent()) {
             throw new ProductNotFound("Product with id:" + id + " doesn't exist.");
         }
-        return productRepository.findById(id);
+        return product;
     }
 
-    public void getAvailableProducts() {}
+    public Optional<Product> getProductBySku(String sku) {
+        Optional<Product> product = productRepository.findProductBySku(sku);
+        if (!product.isPresent()) {
+            throw new ProductNotFound("Product with SKU:" + sku + " doesn't exist.");
+        }
+        return product;
+    }
 
-    public void getUnavailableProducts() {}
+    public List<Product> getAvailableProducts() {
+        List<Product> available = productRepository.findAll()
+                .stream()
+                .filter(p -> p.getQuantity() > 0)
+                .collect(Collectors.toList());
+        if(available.isEmpty()) {
+            throw new EmptyList("No available products found.");
+        }
+        return available;
+    }
+
+    public List<Product> getUnavailableProducts() {
+        List<Product> unavailable = productRepository.findAll()
+                .stream()
+                .filter(p -> p.getQuantity() == 0)
+                .collect(Collectors.toList());
+        if(unavailable.isEmpty()) {
+            throw new EmptyList("No unavailable products found");
+        }
+        return unavailable;
+    }
 
     public void getProductsFromWarehouse(String location) {}
 
     //POST
-
+    @Transactional
     public Product addNewProduct(Product product) {
+        if(productRepository.existsBySku(product.getSku())) {
+            throw new Duplicate("This SKU:" + product.getSku() + " already exist in database");
+        }
         productRepository.save(product);
         return product;
     }
