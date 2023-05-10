@@ -38,7 +38,7 @@ public class ProductService {
 
     public Optional<Product> getProductBySku(String sku) {
         Optional<Product> product = productRepository.findProductBySku(sku);
-        if (!product.isPresent()) {
+        if (product.isEmpty()) {
             throw new ProductNotFound("Product with SKU:" + sku + " doesn't exist.");
         }
         return product;
@@ -70,7 +70,7 @@ public class ProductService {
 
     //POST
     @Transactional
-    public Product addNewProduct(Product product) {
+    public Product addNewProduct(Product product) { //additionaly location as parameter
         if(productRepository.existsBySku(product.getSku())) {
             throw new Duplicate("This SKU:" + product.getSku() + " already exist in database");
         }

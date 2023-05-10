@@ -69,10 +69,24 @@ class ProductServiceTest {
     }
 
     @Test
-    void shouldFindProductBySku() {}
+    void shouldFindProductBySku() {
+        String sku = "SKU-test";
+        Product product = new Product(1L, "available", sku, 5,4.0f, 50.0f, new Warehouse());
+        Mockito.when(productRepository.findProductBySku(sku)).thenReturn(Optional.of(product));
+
+        Optional<Product> skuProduct = productService.getProductBySku(sku);
+
+        assertTrue(skuProduct.isPresent());
+        assertEquals(skuProduct.get(), product);
+    }
 
     @Test
-    void shouldThrowExceptionIfSkuNotFound() {}
+    void shouldThrowExceptionIfSkuNotFound() {
+        String sku = "SKU-test";
+        Mockito.when(productRepository.findProductBySku(sku)).thenReturn(Optional.empty());
+
+        assertThrows(ProductNotFound.class, () -> productService.getProductBySku(sku));
+    }
 
     @Test
     void shouldReturnAvailableProduct() {
