@@ -148,4 +148,10 @@ class ProductServiceTest {
 
     @Test
     void addProduct() {}
+
+    @Test
+    void shouldThrowDuplicateExceptionWhenAddingProduct() {}
+
+    @Test
+    void shouldFailAddingProductWhenLocationNotFound() {}
 }

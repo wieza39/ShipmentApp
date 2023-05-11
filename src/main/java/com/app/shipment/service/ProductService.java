@@ -3,7 +3,9 @@ package com.app.shipment.service;
 import com.app.shipment.exceptions.Duplicate;
 import com.app.shipment.exceptions.EmptyList;
 import com.app.shipment.exceptions.ProductNotFound;
+import com.app.shipment.exceptions.WarehouseNotFound;
 import com.app.shipment.model.Product;
+import com.app.shipment.model.Warehouse;
 import com.app.shipment.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +18,11 @@ import java.util.stream.Collectors;
 public class ProductService {
 
     private ProductRepository productRepository;
+    private WarehouseService warehouseService;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, WarehouseService warehouseService) {
         this.productRepository = productRepository;
+        this.warehouseService = warehouseService;
     }
 
     //GET
@@ -70,10 +74,15 @@ public class ProductService {
 
     //POST
     @Transactional
-    public Product addNewProduct(Product product) { //additionaly location as parameter
+    public Product addNewProduct(Product product, String location) { //additionaly location as parameter
+        Optional<Warehouse> warehouse = warehouseService.getWarehouseByLocation(location);
+        if(warehouse.isEmpty()) {
+            throw new WarehouseNotFound("Warehouse in " + location + " doesn't exist. Choose different one.");
+        }
         if(productRepository.existsBySku(product.getSku())) {
             throw new Duplicate("This SKU:" + product.getSku() + " already exist in database");
         }
+        product.setWarehouse(warehouse.get());
         productRepository.save(product);
         return product;
     }

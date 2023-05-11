@@ -4,11 +4,13 @@ import com.app.shipment.model.Product;
 import com.app.shipment.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -48,9 +50,9 @@ public class ProductController {
         return ResponseEntity.ok(available);
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<Product> addNewProduct(@RequestBody Product product) {
-        Product newProduct = productService.addNewProduct(product);
+    @PostMapping("/new/{location}")
+    public ResponseEntity<Product> addNewProduct(@RequestBody Product product, @PathVariable String location) {
+        Product newProduct = productService.addNewProduct(product, StringUtils.capitalize(location));
         return ResponseEntity.ok(newProduct);
     }
 }

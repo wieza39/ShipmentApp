@@ -34,6 +34,7 @@ public class Warehouse {
     @OneToMany(mappedBy = "warehouse")
     private List<Product> stock;
 
+    //@Pattern(regexp = "^[A-Z][a-z]*$")
     @Column(name = "location")
     private String location;
 }
