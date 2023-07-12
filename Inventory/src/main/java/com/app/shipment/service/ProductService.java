@@ -5,6 +5,8 @@ import com.app.shipment.exceptions.EmptyList;
 import com.app.shipment.exceptions.ProductNotFound;
 import com.app.shipment.exceptions.WarehouseNotFound;
 import com.app.shipment.model.Product;
+import com.app.shipment.model.dto.ProductDTO;
+import com.app.shipment.model.dto.ProductResponse;
 import com.app.shipment.warehouse.model.Warehouse;
 import com.app.shipment.repository.ProductRepository;
 import com.app.shipment.warehouse.service.WarehouseService;
@@ -36,13 +38,27 @@ public class ProductService {
         return Optional.ofNullable(productRepository.findById(id).orElseThrow(() -> new ProductNotFound("Product with id:" + id + " doesn't exist.")));
     }
 
-    public Optional<Product> getProductBySku(String sku) {
-        Optional<Product> product = productRepository.findProductBySku(sku);
-        if (product.isEmpty()) {
+    public ProductResponse getProductBySku(String sku) {
+        ProductResponse productResponse = new ProductResponse();
+        Product product = productRepository.findProductBySku(sku);
+
+        productResponse.setSku(product.getSku());
+        productResponse.setQuantity(product.getQuantity());
+        productResponse.setPrice(product.getPrice());
+        productResponse.setWeight(product.getWeight());
+
+        if (productResponse.getSku() == null) {
             throw new ProductNotFound("Product with SKU:" + sku + " doesn't exist.");
         }
-        return product;
+        return productResponse;
     }
+//    public Optional<Product> getProductBySku(String sku) {
+//        Optional<Product> product = productRepository.findProductBySku(sku);
+//        if (product.isEmpty()) {
+//            throw new ProductNotFound("Product with SKU:" + sku + " doesn't exist.");
+//        }
+//        return product;
+//    }
 
     public List<Product> getAvailableProducts() {
         List<Product> available = productRepository.findAll()

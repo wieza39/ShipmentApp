@@ -1,6 +1,8 @@
 package com.app.shipment.controller;
 
 import com.app.shipment.model.Product;
+import com.app.shipment.model.dto.ProductDTO;
+import com.app.shipment.model.dto.ProductResponse;
 import com.app.shipment.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,11 +36,17 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Optional<Product>> getProductById(@PathVariable Long id) {
         Optional<Product> product = productService.getProductById(id);
         return ResponseEntity.ok(product);
     }
+
+    @GetMapping("/sku")
+    public ResponseEntity<ProductResponse> getProductBySku(@RequestParam String sku) {
+        ProductResponse product = productService.getProductBySku(sku);
+        return ResponseEntity.ok(product);
+    }
+
 
     @GetMapping("/find/available")
     public ResponseEntity<List<Product>> getAllAvailableProducts() {
