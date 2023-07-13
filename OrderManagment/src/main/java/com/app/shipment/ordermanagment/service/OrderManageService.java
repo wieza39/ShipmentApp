@@ -1,10 +1,14 @@
 package com.app.shipment.ordermanagment.service;
 
 import com.app.shipment.ordermanagment.config.WebClientBuild;
+import com.app.shipment.ordermanagment.exceptions.ProductNotFoundException;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class OrderManageService {
@@ -26,7 +30,12 @@ public class OrderManageService {
                         .path("/product/sku").
                         queryParam("sku", sku).build())
                 .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError,
+                        error -> Mono.error(new ProductNotFoundException("SKU: " + sku + " is incorrect or doesn't exist")))
                 .bodyToMono(ProductInfoResponse.class)
                 .block();
     }
+
+    //get client details
+    //create order
 }

@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Product findProductBySku(String sku);
+    Optional<Product> findProductBySku(String sku);
     boolean existsBySku(String sku);
 }

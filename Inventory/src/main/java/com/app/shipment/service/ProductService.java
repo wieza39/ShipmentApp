@@ -39,26 +39,22 @@ public class ProductService {
     }
 
     public ProductResponse getProductBySku(String sku) {
-        ProductResponse productResponse = new ProductResponse();
-        Product product = productRepository.findProductBySku(sku);
 
-        productResponse.setSku(product.getSku());
-        productResponse.setQuantity(product.getQuantity());
-        productResponse.setPrice(product.getPrice());
-        productResponse.setWeight(product.getWeight());
+            ProductResponse productResponse = new ProductResponse();
+            Optional<Product> product = productRepository.findProductBySku(sku);
 
-        if (productResponse.getSku() == null) {
-            throw new ProductNotFound("Product with SKU:" + sku + " doesn't exist.");
-        }
-        return productResponse;
+            if(product.isPresent()) {
+                productResponse.setSku(product.get().getSku());
+                productResponse.setQuantity(product.get().getQuantity());
+                productResponse.setPrice(product.get().getPrice());
+                productResponse.setWeight(product.get().getWeight());
+
+                return productResponse;
+            } else {
+                throw new ProductNotFound("Product with SKU " + sku + " not found.");
+            }
     }
-//    public Optional<Product> getProductBySku(String sku) {
-//        Optional<Product> product = productRepository.findProductBySku(sku);
-//        if (product.isEmpty()) {
-//            throw new ProductNotFound("Product with SKU:" + sku + " doesn't exist.");
-//        }
-//        return product;
-//    }
+
 
     public List<Product> getAvailableProducts() {
         List<Product> available = productRepository.findAll()
