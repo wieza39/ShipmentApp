@@ -23,22 +23,29 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
-@Table(name = "Users")
-public class User {
+@Table(name = "Customers")
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "login")
+    private String login;
+
     @Column(name = "name")
     private String name;
+
+    @Column(name = "surname")
+    private String surname;
 
     @Column(name = "phone_number")
     private String phone;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @Column(name = "email")
+    private String email;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Address> addressList = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private List<Order> order = new ArrayList<>();
 }
