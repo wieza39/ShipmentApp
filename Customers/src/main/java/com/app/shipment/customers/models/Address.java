@@ -1,5 +1,6 @@
 package com.app.shipment.customers.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -42,8 +43,8 @@ public class Address {
     @Column(name = "flat")
     private String flat;
 
-    @Column(name = "postalCode")
-    private String postalCode;
+    @Column(name = "postalcode")
+    private String postalcode;
 
     @Column(name = "city")
     private String city;
@@ -52,6 +53,7 @@ public class Address {
     private String country;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "customer_id")
     private Customer customer;
 }

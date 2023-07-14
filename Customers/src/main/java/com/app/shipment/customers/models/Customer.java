@@ -1,5 +1,6 @@
 package com.app.shipment.customers.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -46,6 +47,7 @@ public class Customer {
     private String email;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Address> addressList = new ArrayList<>();
 
 }

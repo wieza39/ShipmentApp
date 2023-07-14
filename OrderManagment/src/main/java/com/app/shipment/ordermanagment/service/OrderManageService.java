@@ -2,6 +2,8 @@ package com.app.shipment.ordermanagment.service;
 
 import com.app.shipment.ordermanagment.config.WebClientBuild;
 import com.app.shipment.ordermanagment.exceptions.ProductNotFoundException;
+import com.app.shipment.ordermanagment.model.AddressDTO;
+import com.app.shipment.ordermanagment.model.CustomerDeliveryDetails;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -36,6 +38,17 @@ public class OrderManageService {
                 .block();
     }
 
-    //get client details
+    //get client delivery details
+    public CustomerDeliveryDetails getCustomerDeliveryDetails(String login) {
+        return inventoryWebclient.inventoryWebClient()
+                .method(HttpMethod.GET)
+                .uri(uriBuilder -> uriBuilder
+                        .path("/customers/deliveryDetails")
+                        .queryParam("login", login).build())
+                .retrieve()
+                .bodyToMono(CustomerDeliveryDetails.class)
+                .block();
+    }
+
     //create order
 }

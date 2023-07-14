@@ -1,5 +1,6 @@
 package com.app.shipment.ordermanagment.controller;
 
+import com.app.shipment.ordermanagment.model.CustomerDeliveryDetails;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import com.app.shipment.ordermanagment.service.OrderManageService;
 import org.apache.coyote.Response;
@@ -25,6 +26,12 @@ public class OrderManageController {
     public ResponseEntity<ProductInfoResponse> getProductBySku(@RequestParam String sku) {
         ProductInfoResponse product = orderManageService.getProductBySku(sku);
         return ResponseEntity.ok(product);
+    }
+
+    @GetMapping("/findCustomerDeliveryDetails")
+    public ResponseEntity<CustomerDeliveryDetails> getCustomerDeliveryDetails(@RequestParam String login) {
+        CustomerDeliveryDetails customerDetails = orderManageService.getCustomerDeliveryDetails(login);
+        return ResponseEntity.ok(customerDetails);
     }
 
 
