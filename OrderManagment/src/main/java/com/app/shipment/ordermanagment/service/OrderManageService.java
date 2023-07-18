@@ -25,6 +25,7 @@ public class OrderManageService {
         this.orderWebclient = orderWebclient;
     }
 
+    //get a product
     public ProductInfoResponse getProductBySku(String sku) {
         return inventoryWebclient.inventoryWebClient()
                 .method(HttpMethod.GET)
@@ -50,5 +51,7 @@ public class OrderManageService {
                 .block();
     }
 
-    //create order
+    //create order (requires:
+    //inventory-service: check availability + change quantity)
+    //order-service: post order 
 }

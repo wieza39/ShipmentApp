@@ -45,7 +45,7 @@ public class CustomerService {
         Optional<Customer> customer = getCustomerByLogin(login);
         Optional<Address> address = getCustomerAddressByType(AddressType.DELIVERY, login);
 
-        if(customer.isPresent()) {
+        if(customer.isPresent() && address.isPresent()) {
             customerDetails.setName(customer.get().getName());
             customerDetails.setSurname(customer.get().getSurname());
             customerDetails.setPhone(customer.get().getPhone());
