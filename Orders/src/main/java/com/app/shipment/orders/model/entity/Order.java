@@ -1,4 +1,4 @@
-package com.app.shipment.orders.model;
+package com.app.shipment.orders.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,7 +50,7 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status")
-    private com.app.shipment.model.OrderStatus orderStatus;
+    private OrderStatus orderStatus;
 
 //    @ManyToOne
 //    @JoinColumn(name = "order_owner")

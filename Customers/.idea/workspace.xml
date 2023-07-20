@@ -5,18 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0356281c-8c6f-430e-a058-8907d62de0eb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Orders/src/main/java/com/app/shipment/orders/model/dto/OrderedProductDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/app/shipment/customers/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/shipment/customers/controller/CustomerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/app/shipment/customers/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/app/shipment/customers/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/src/main/java/com/app/shipment/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/src/main/java/com/app/shipment/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/src/main/java/com/app/shipment/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/src/main/java/com/app/shipment/service/ProductServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/src/test/java/com/app/shipment/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/src/test/java/com/app/shipment/service/ProductServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/target/classes/com/app/shipment/controller/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/target/classes/com/app/shipment/controller/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/target/classes/com/app/shipment/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/target/classes/com/app/shipment/service/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Inventory/target/test-classes/com/app/shipment/service/ProductServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Inventory/target/test-classes/com/app/shipment/service/ProductServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../OrderManagment/src/main/java/com/app/shipment/ordermanagment/service/OrderManageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderManagment/src/main/java/com/app/shipment/ordermanagment/service/OrderManageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orders/.idea/sonarlint/issuestore/0/4/04f5bcab32cbe2ac2d928b0fd3527a9fc4af1fe7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orders/.idea/sonarlint/issuestore/3/2/3228791aa1531ba00a1769e16874f68df3f96243" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Orders/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Orders/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orders/.idea/sonarlint/securityhotspotstore/0/4/04f5bcab32cbe2ac2d928b0fd3527a9fc4af1fe7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orders/.idea/sonarlint/securityhotspotstore/3/2/3228791aa1531ba00a1769e16874f68df3f96243" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Orders/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../Orders/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orders/src/main/java/com/app/shipment/orders/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Orders/src/main/java/com/app/shipment/orders/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Orders/src/main/java/com/app/shipment/orders/model/OrderedProduct.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Orders/src/main/java/com/app/shipment/orders/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Orders/src/main/java/com/app/shipment/orders/service/OrderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +107,7 @@
       <workItem from="1689106207401" duration="1779000" />
       <workItem from="1689283839046" duration="9623000" />
       <workItem from="1689356901998" duration="7299000" />
+      <workItem from="1689883423268" duration="1015000" />
     </task>
     <servers />
   </component>

@@ -25,12 +25,21 @@ public class OrderManageService {
         this.orderWebclient = orderWebclient;
     }
 
-    //get a product
+    public void order() {}
+    //create order (requires:
+    //inventory-service: check availability + change quantity)
+    //order-service: post order
+
+    public void withdrawProduct() {}
+
+
+    /** Gets product info from Inventory Service.
+     * Not really useful for now, just for testing connection and answer matters */
     public ProductInfoResponse getProductBySku(String sku) {
         return inventoryWebclient.inventoryWebClient()
                 .method(HttpMethod.GET)
                 .uri(uriBuilder -> uriBuilder
-                        .path("/product/sku").
+                        .path("/api/product/sku").
                         queryParam("sku", sku).build())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError,
@@ -39,19 +48,15 @@ public class OrderManageService {
                 .block();
     }
 
-    //get client delivery details
+    /** Gets client's delivery details from Customer Service */
     public CustomerDeliveryDetails getCustomerDeliveryDetails(String login) {
-        return inventoryWebclient.inventoryWebClient()
+        return inventoryWebclient.customerWebClient()
                 .method(HttpMethod.GET)
                 .uri(uriBuilder -> uriBuilder
-                        .path("/customers/deliveryDetails")
+                        .path("/api/customers/deliveryDetails")
                         .queryParam("login", login).build())
                 .retrieve()
                 .bodyToMono(CustomerDeliveryDetails.class)
                 .block();
     }
-
-    //create order (requires:
-    //inventory-service: check availability + change quantity)
-    //order-service: post order 
 }

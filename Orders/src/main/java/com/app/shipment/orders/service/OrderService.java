@@ -1,15 +1,13 @@
 package com.app.shipment.orders.service;
 
-import com.app.shipment.orders.model.Order;
-import com.app.shipment.orders.model.OrderedProduct;
+import com.app.shipment.orders.model.entity.Order;
+import com.app.shipment.orders.model.entity.OrderedProduct;
 import com.app.shipment.orders.model.dto.AddressDTO;
 import com.app.shipment.orders.model.dto.CustomerDTO;
 import com.app.shipment.orders.model.dto.OrderDTO;
-import com.app.shipment.orders.model.dto.OrderedProductDTO;
 import com.app.shipment.orders.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,17 +19,25 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public String generateOrderNumber() {
 
+
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 
+    public String generateOrderNumber() {
+        String orderNumber = "";
+        // need to be filled
+        return orderNumber;
+    }
+
+    //change Order to OrderResponse
     public Order addOrder(OrderDTO orderDTO) {
         Order newOrder = new Order();
         List<OrderedProduct> orderedProductList;
 
         CustomerDTO customerData = new CustomerDTO();
         AddressDTO addressData = new AddressDTO();
-        List<OrderedProductDTO> orderedProductDTOList = new ArrayList<>();
 
 
         addressData.setStreet(orderDTO.getCustomerDTO().getAddress().getStreet());
@@ -50,6 +56,8 @@ public class OrderService {
         orderedProductList = orderDTO.getOrderedProductList();
 
         newOrder.setOrderList(orderedProductList);
+
+        orderRepository.save(newOrder);
 
         return newOrder;
     }

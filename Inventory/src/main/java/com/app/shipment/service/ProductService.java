@@ -5,10 +5,8 @@ import com.app.shipment.exceptions.EmptyList;
 import com.app.shipment.exceptions.ProductNotFound;
 import com.app.shipment.exceptions.WarehouseNotFound;
 import com.app.shipment.model.Product;
-import com.app.shipment.model.dto.ProductDTO;
-import com.app.shipment.model.dto.ProductResponse;
-import com.app.shipment.warehouse.model.Warehouse;
 import com.app.shipment.repository.ProductRepository;
+import com.app.shipment.warehouse.model.Warehouse;
 import com.app.shipment.warehouse.service.WarehouseService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,41 +18,29 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
 
-    private ProductRepository productRepository;
-    private WarehouseService warehouseService;
+    private final ProductRepository productRepository;
+    private final WarehouseService warehouseService;
 
     public ProductService(ProductRepository productRepository, WarehouseService warehouseService) {
         this.productRepository = productRepository;
         this.warehouseService = warehouseService;
     }
 
-    //GET
 
+    /** GET methods section */
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     public Optional<Product> getProductById(Long id) {
-        return Optional.ofNullable(productRepository.findById(id).orElseThrow(() -> new ProductNotFound("Product with id:" + id + " doesn't exist.")));
+        return Optional.ofNullable(productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFound("Product with id:" + id + " doesn't exist.")));
     }
 
-    public ProductResponse getProductBySku(String sku) {
-
-            ProductResponse productResponse = new ProductResponse();
-            Optional<Product> product = productRepository.findProductBySku(sku);
-
-            if(product.isPresent()) {
-                productResponse.setSku(product.get().getSku());
-                productResponse.setQuantity(product.get().getQuantity());
-                productResponse.setPrice(product.get().getPrice());
-                productResponse.setWeight(product.get().getWeight());
-
-                return productResponse;
-            } else {
-                throw new ProductNotFound("Product with SKU " + sku + " not found.");
-            }
+    public Optional<Product> getProductBySku(String sku) {
+        return Optional.ofNullable(productRepository.findProductBySku(sku)
+                .orElseThrow(() -> new ProductNotFound("Product with sku: " + sku + " doesn't exist")));
     }
-
 
     public List<Product> getAvailableProducts() {
         List<Product> available = productRepository.findAll()
@@ -80,7 +66,7 @@ public class ProductService {
 
     public void getProductsFromWarehouse(String location) {}
 
-    //POST
+    /** POST methods section */
     @Transactional
     public Product addNewProduct(Product product, String location) {
         Optional<Warehouse> warehouse = warehouseService.getWarehouseByLocation(location);
@@ -97,11 +83,19 @@ public class ProductService {
 
     public void importProducts(List<Product> newProductList) {}
 
-    //PUT
-        //update by SKU
+    /** PATCH methods section */
+    //update by SKU
     public void updateNameBySku(Long id, String name) {}
 
-    public void updateQuantityBySku() {}
+    public void updateQuantityBySku(Optional<Product> product, int quantity) {
+        if(product.isPresent()) {
+            int currentQty = product.get().getQuantity();
+            product.get().setQuantity(currentQty - quantity);
+            productRepository.save(product.get());
+        } else {
+            throw new ProductNotFound("Product with sku: " + product.get().getSku() + " doesn't exist");
+        }
+    }
 
     public void updateWeightBySku() {}
 
@@ -110,10 +104,8 @@ public class ProductService {
     public void changeWarehouseBySku() {}
 
 
-    //DELETE
+    /** DELETE methods section */
     public void deleteProductBySKU(String sku) {
 
     }
-
-
 }

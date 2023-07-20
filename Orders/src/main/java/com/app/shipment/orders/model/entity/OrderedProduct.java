@@ -1,4 +1,4 @@
-package com.app.shipment.orders.model;
+package com.app.shipment.orders.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -37,7 +37,4 @@ public class OrderedProduct {
     @JoinColumn(name = "order_id")
     private Order order;
 
-//    @ManyToOne
-//    @JoinColumn(name = "product_id")
-//    private Product product;
 }

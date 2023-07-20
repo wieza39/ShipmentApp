@@ -1,0 +1,20 @@
+
+d
+java:S1128"BRemove this unused import 'com.app.shipment.exceptions.Duplicate'.(Ë‹Ëùøÿÿÿÿ8•õ¦—1
+d
+java:S1128"BRemove this unused import 'com.app.shipment.exceptions.EmptyList'.(õöÂÿÿÿÿÿ8“•õ¦—1
+l
+java:S1128"JRemove this unused import 'com.app.shipment.exceptions.WarehouseNotFound'.(®Õ×ğıÿÿÿÿ8“•õ¦—1
+i
+java:S1128	"GRemove this unused import 'com.app.shipment.warehouse.model.Warehouse'.(‡”ÌÚøÿÿÿÿ8“•õ¦—1
+g
+java:S1128
+"JRemove this unused import 'com.app.shipment.repository.ProductRepository'.(Û¾äÒ8•õ¦—1
+m
+java:S1128"PRemove this unused import 'com.app.shipment.warehouse.service.WarehouseService'.(ÓìÌ8•õ¦—1
+w
+java:S1128"URemove this unused import 'org.springframework.transaction.annotation.Transactional'.(ğùçøùÿÿÿÿ8£•õ¦—1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¦•õ¦—1
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8¨•õ¦—1

@@ -1,4 +1,4 @@
-package com.app.shipment.model;
+package com.app.shipment.orders.model.entity;
 
 public enum OrderStatus {
     PENDING,

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("customers")
+@RequestMapping("/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -35,9 +35,5 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
-    @GetMapping("/deliveryDetails")
-    public ResponseEntity<CustomerDeliveryResponse> getCustomerDeliveryDetails(@RequestParam String login) {
-        CustomerDeliveryResponse customerDetails = customerService.getCustomerDeliveryDetails(login);
-        return ResponseEntity.ok(customerDetails);
-    }
+
 }

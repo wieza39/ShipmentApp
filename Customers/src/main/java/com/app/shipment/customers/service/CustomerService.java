@@ -40,21 +40,6 @@ public class CustomerService {
                 .findFirst());
     }
 
-    public CustomerDeliveryResponse getCustomerDeliveryDetails(String login) {
-        CustomerDeliveryResponse customerDetails = new CustomerDeliveryResponse();
-        Optional<Customer> customer = getCustomerByLogin(login);
-        Optional<Address> address = getCustomerAddressByType(AddressType.DELIVERY, login);
 
-        if(customer.isPresent() && address.isPresent()) {
-            customerDetails.setName(customer.get().getName());
-            customerDetails.setSurname(customer.get().getSurname());
-            customerDetails.setPhone(customer.get().getPhone());
-            customerDetails.setEmail(customer.get().getEmail());
-            customerDetails.setAddress(address.get());
-        } else {
-            throw new CustomerNotFound("Verify your login");
-        }
-        return customerDetails;
-    }
 }
 
