@@ -33,6 +33,9 @@ public class OrderedProduct {
     @Column(name = "price")
     private float price;
 
+    @Column(name = "sku")
+    private String sku;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

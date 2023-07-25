@@ -32,6 +32,7 @@ public class OrderManageService {
 
     public void withdrawProduct() {}
 
+    public void checkStatus() {}
 
     /** Gets product info from Inventory Service.
      * Not really useful for now, just for testing connection and answer matters */

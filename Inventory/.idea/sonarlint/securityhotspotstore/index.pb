@@ -13,15 +13,3 @@ h
 8src/main/java/com/app/shipment/model/dto/ProductDTO.java,c/9/c9d5be9a19044dc1b17c5b69828b4e9e1b64965c
 n
 >src/test/java/com/app/shipment/service/ProductServiceTest.java,9/b/9bf1dd74e1166697610a232773a9ed12b3b89492
-v
-Fsrc/main/java/com/app/shipment/controller/ProductControllerClient.java,5/5/553b7038fcf1c1eb51e72b5f3df941693941cc80
-j
-:src/main/java/com/app/shipment/service/ProductService.java,7/4/740b9888238985eed4e233aa2308301a011c280b
-m
-=src/main/java/com/app/shipment/model/dto/ProductResponse.java,2/c/2c3b724cae2deed670f63ffccf14965d40104226
-p
-@src/main/java/com/app/shipment/controller/ProductController.java,8/b/8bd83f439f4ca670c319bf1a5aa5cd7566463686
-p
-@src/main/java/com/app/shipment/service/ProductServiceClient.java,9/7/978043834dc3f3ac823fc1a946f87ef3ba3fd7b0
-a
-1src/main/java/com/app/shipment/model/Product.java,9/a/9a81d9cc66ac4ee91a0dac720f9778e016289f57

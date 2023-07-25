@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class Order {
     @Column(name = "order_number")
     private String orderNumber;
 
+    @CreationTimestamp
     @Column(name = "creation_date")
     private LocalDate creationDate;
 
