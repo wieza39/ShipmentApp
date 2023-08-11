@@ -1,13 +1,10 @@
 package com.app.shipment.ordermanagment.controller;
 
-import com.app.shipment.ordermanagment.model.CustomerDeliveryDetails;
+import com.app.shipment.ordermanagment.model.CustomerDTO;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import com.app.shipment.ordermanagment.service.OrderManageService;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +19,8 @@ public class OrderManageController {
         this.orderManageService = orderManageService;
     }
 
+
+
     @GetMapping("/findbysku")
     public ResponseEntity<ProductInfoResponse> getProductBySku(@RequestParam String sku) {
         ProductInfoResponse product = orderManageService.getProductBySku(sku);
@@ -29,8 +28,8 @@ public class OrderManageController {
     }
 
     @GetMapping("/findCustomerDeliveryDetails")
-    public ResponseEntity<CustomerDeliveryDetails> getCustomerDeliveryDetails(@RequestParam String login) {
-        CustomerDeliveryDetails customerDetails = orderManageService.getCustomerDeliveryDetails(login);
+    public ResponseEntity<CustomerDTO> getCustomerDeliveryDetails(@RequestParam String login) {
+        CustomerDTO customerDetails = orderManageService.getCustomerDeliveryDetails(login);
         return ResponseEntity.ok(customerDetails);
     }
 

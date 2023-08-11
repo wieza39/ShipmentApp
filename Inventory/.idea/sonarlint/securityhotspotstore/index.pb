@@ -13,3 +13,5 @@ h
 8src/main/java/com/app/shipment/model/dto/ProductDTO.java,c/9/c9d5be9a19044dc1b17c5b69828b4e9e1b64965c
 n
 >src/test/java/com/app/shipment/service/ProductServiceTest.java,9/b/9bf1dd74e1166697610a232773a9ed12b3b89492
+a
+1src/main/java/com/app/shipment/model/Product.java,9/a/9a81d9cc66ac4ee91a0dac720f9778e016289f57

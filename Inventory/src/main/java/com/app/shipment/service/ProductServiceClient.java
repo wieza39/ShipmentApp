@@ -2,6 +2,7 @@ package com.app.shipment.service;
 
 import com.app.shipment.exceptions.Duplicate;
 import com.app.shipment.exceptions.EmptyList;
+import com.app.shipment.exceptions.ProductNotAvailable;
 import com.app.shipment.exceptions.ProductNotFound;
 import com.app.shipment.exceptions.WarehouseNotFound;
 import com.app.shipment.model.Product;
@@ -25,21 +26,30 @@ public class ProductServiceClient {
         this.productService = productService;
     }
 
+    public boolean checkAvailability(Optional<Product> product, int quantity) {
+        return productService.checkAvailability(product,quantity);
+    }
 
     public ProductResponse withdrawProductBySku(String sku, int quantity) {
 
         ProductResponse productResponse = new ProductResponse();
         Optional<Product> product = productService.getProductBySku(sku);
 
+        boolean availability = checkAvailability(product, quantity);
+
         if(product.isPresent()) {
-            productService.updateQuantityBySku(product, quantity);
+            if(availability) {
+                productService.updateQuantityBySku(product, quantity);
 
-            productResponse.setSku(product.get().getSku());
-            productResponse.setQuantity(quantity);
-            productResponse.setPrice(product.get().getPrice() * quantity);
-            productResponse.setWeight(product.get().getWeight() * quantity);
+                productResponse.setSku(product.get().getSku());
+                productResponse.setQuantity(quantity);
+                productResponse.setPrice(product.get().getPrice() * quantity);
+                productResponse.setWeight(product.get().getWeight() * quantity);
 
-            return productResponse;
+                return productResponse;
+            } else {
+                throw new ProductNotAvailable("Limited availability of product " + sku + ".");
+            }
         } else {
             throw new ProductNotFound("Product with SKU " + sku + " not found.");
         }

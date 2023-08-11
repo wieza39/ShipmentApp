@@ -42,6 +42,15 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotFound("Product with sku: " + sku + " doesn't exist")));
     }
 
+    public boolean checkAvailability(Optional<Product> product, int quantity) {
+        if(product.isPresent()) {
+            if(product.get().getQuantity() - quantity >= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Product> getAvailableProducts() {
         List<Product> available = productRepository.findAll()
                 .stream()

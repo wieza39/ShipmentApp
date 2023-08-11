@@ -72,25 +72,13 @@ public class OrderService {
         newOrder.setOrderStatus(OrderStatus.PENDING);
         newOrder.setOrderList(orderedProductList);
 
+        LocalDate deliveryDate = LocalDate.now();
+        deliveryDate.plusDays(2);
+        newOrder.setDeliveryDate(deliveryDate);
+
         orderRepository.save(newOrder);
 
         return newOrder;
 
-//        CustomerDTO customerData = new CustomerDTO();
-//        AddressDTO addressData = new AddressDTO();
-//
-//
-//        addressData.setStreet(orderDTO.getCustomerDTO().getAddress().getStreet());
-//        addressData.setBuilding(orderDTO.getCustomerDTO().getAddress().getBuilding());
-//        addressData.setFlat(orderDTO.getCustomerDTO().getAddress().getFlat());
-//        addressData.setPostalCode(orderDTO.getCustomerDTO().getAddress().getPostalCode());
-//        addressData.setCity(orderDTO.getCustomerDTO().getAddress().getCity());
-//        addressData.setCountry(orderDTO.getCustomerDTO().getAddress().getCountry());
-//
-//        customerData.setName(orderDTO.getCustomerDTO().getName());
-//        customerData.setSurname(orderDTO.getCustomerDTO().getSurname());
-//        customerData.setEmail(orderDTO.getCustomerDTO().getEmail());
-//        customerData.setPhone(orderDTO.getCustomerDTO().getPhone());
-//        customerData.setAddress(addressData);
     }
 }
