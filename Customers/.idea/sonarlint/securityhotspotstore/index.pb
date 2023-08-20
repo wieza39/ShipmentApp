@@ -19,13 +19,5 @@ l
 Ksrc/main/java/com/app/shipment/customers/repository/CustomerRepository.java,1/3/1319a00ed6cdbccaebac8e7f56a9dd4f1b5929c2
 m
 =src/main/java/com/app/shipment/customers/models/Customer.java,7/3/7304c75ae418e1d1d948ee1f0f69a314c10245d4
-t
-Dsrc/main/java/com/app/shipment/customers/service/AddressService.java,4/4/445eab89ba6503fc4816087a3d0278f1504c5b1f
-Å
-Qsrc/main/java/com/app/shipment/customers/controller/CustomerControllerClient.java,5/8/58e39d65945b5dfc0b6b3671c6507896dd3c68f2
-{
-Ksrc/main/java/com/app/shipment/customers/service/CustomerServiceClient.java,a/e/ae26d0d6f123172c3a7fbdfd055843602a28501b
-u
-Esrc/main/java/com/app/shipment/customers/service/CustomerService.java,e/5/e57f0f5f6b616c7a6d0c41f7ef3ec1e20f2e3034
 {
 Ksrc/main/java/com/app/shipment/customers/controller/CustomerController.java,2/a/2add1e516c55cab31b7094bff195ecbd40505e7d

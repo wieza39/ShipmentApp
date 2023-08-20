@@ -5,10 +5,14 @@ import com.app.shipment.ordermanagment.exceptions.ProductNotFoundException;
 import com.app.shipment.ordermanagment.model.CustomerDTO;
 import com.app.shipment.ordermanagment.model.OrderConfirmDTO;
 import com.app.shipment.ordermanagment.model.OrderDTO;
+import com.app.shipment.ordermanagment.model.OrderResponse;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -26,8 +30,17 @@ public class OrderManageService {
 
     public OrderConfirmDTO order(OrderDTO orderDTO) {
         OrderConfirmDTO orderConfirmDTO = new OrderConfirmDTO();
-        
+        orderConfirmDTO.setOrderNumber(orderConfirmDTO.getOrderNumber());
 
+        orderWebclient.orderWebClient()
+                .post()
+                .uri("api/orders/new")
+                .bodyValue(orderDTO)
+                .retrieve()
+                .bodyToMono(OrderResponse.class)
+                .block();
+
+        return orderConfirmDTO;
     }
     //create order (requires:
     //inventory-service: check availability + change quantity)

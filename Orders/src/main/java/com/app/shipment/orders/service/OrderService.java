@@ -73,8 +73,7 @@ public class OrderService {
         newOrder.setOrderList(orderedProductList);
 
         LocalDate deliveryDate = LocalDate.now();
-        deliveryDate.plusDays(2);
-        newOrder.setDeliveryDate(deliveryDate);
+        newOrder.setDeliveryDate(deliveryDate.plusDays(2));
 
         orderRepository.save(newOrder);
 

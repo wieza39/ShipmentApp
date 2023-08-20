@@ -13,5 +13,3 @@ s
 Csrc/main/java/com/app/shipment/orders/model/entity/OrderStatus.java,6/3/631831fc8921c73bffb852477c4716c800eafcfd
 v
 Fsrc/main/java/com/app/shipment/orders/model/dto/OrderedProductDTO.java,1/6/1643cf98aef267867bf8c712e4e40111f8f0c9ed
-m
-=src/main/java/com/app/shipment/orders/model/dto/OrderDTO.java,2/0/20992deb1f2d8f3f8f564266d1d5551a9e637235

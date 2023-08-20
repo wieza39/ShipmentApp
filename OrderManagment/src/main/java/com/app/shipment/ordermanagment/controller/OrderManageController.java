@@ -1,10 +1,14 @@
 package com.app.shipment.ordermanagment.controller;
 
 import com.app.shipment.ordermanagment.model.CustomerDTO;
+import com.app.shipment.ordermanagment.model.OrderConfirmDTO;
+import com.app.shipment.ordermanagment.model.OrderDTO;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import com.app.shipment.ordermanagment.service.OrderManageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +23,6 @@ public class OrderManageController {
         this.orderManageService = orderManageService;
     }
 
-
-
     @GetMapping("/findbysku")
     public ResponseEntity<ProductInfoResponse> getProductBySku(@RequestParam String sku) {
         ProductInfoResponse product = orderManageService.getProductBySku(sku);
@@ -33,5 +35,9 @@ public class OrderManageController {
         return ResponseEntity.ok(customerDetails);
     }
 
-
+    @PostMapping("/order/new")
+    public ResponseEntity<OrderConfirmDTO> addOrder(@RequestBody OrderDTO orderDTO) {
+        OrderConfirmDTO orderConfirm = orderManageService.order(orderDTO);
+        return ResponseEntity.ok(orderConfirm);
+    }
 }
