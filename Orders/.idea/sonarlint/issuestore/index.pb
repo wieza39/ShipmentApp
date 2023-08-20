@@ -11,5 +11,3 @@ u
 Esrc/main/java/com/app/shipment/orders/controller/OrderController.java,3/b/3b66547b9d86dec140bf87f9b83a27b6bf49eb37
 s
 Csrc/main/java/com/app/shipment/orders/model/entity/OrderStatus.java,6/3/631831fc8921c73bffb852477c4716c800eafcfd
-v
-Fsrc/main/java/com/app/shipment/orders/model/dto/OrderedProductDTO.java,1/6/1643cf98aef267867bf8c712e4e40111f8f0c9ed

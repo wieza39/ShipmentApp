@@ -44,7 +44,9 @@ public class OrderService {
         String dayStr = String.format("%02d", day);
 
         String initials = name.substring(0, 3).toUpperCase() + surname.substring(0, 3).toUpperCase();
-        orderNumber = yearStr + monthStr + dayStr + "/" + initials;
+
+        long orderSeqNr = getAllOrders().stream().count() + 1;
+        orderNumber = yearStr + monthStr + dayStr + "000" + orderSeqNr + "/" + initials;
 
 
         return orderNumber;

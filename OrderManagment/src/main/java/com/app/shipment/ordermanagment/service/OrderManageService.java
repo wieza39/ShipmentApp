@@ -6,6 +6,7 @@ import com.app.shipment.ordermanagment.model.CustomerDTO;
 import com.app.shipment.ordermanagment.model.OrderConfirmDTO;
 import com.app.shipment.ordermanagment.model.OrderDTO;
 import com.app.shipment.ordermanagment.model.OrderResponse;
+import com.app.shipment.ordermanagment.model.OrderedProductDTO;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -29,10 +30,7 @@ public class OrderManageService {
     }
 
     public OrderConfirmDTO order(OrderDTO orderDTO) {
-        OrderConfirmDTO orderConfirmDTO = new OrderConfirmDTO();
-        orderConfirmDTO.setOrderNumber(orderConfirmDTO.getOrderNumber());
-
-        orderWebclient.orderWebClient()
+        OrderResponse response = orderWebclient.orderWebClient()
                 .post()
                 .uri("api/orders/new")
                 .bodyValue(orderDTO)
@@ -40,18 +38,26 @@ public class OrderManageService {
                 .bodyToMono(OrderResponse.class)
                 .block();
 
+        for(OrderedProductDTO product : orderDTO.getOrderedProductList()) {
+            withdrawProduct(product.getSku(), product.getQuantity());
+        }
+
+        OrderConfirmDTO orderConfirmDTO = new OrderConfirmDTO();
+        orderConfirmDTO.setOrderNumber(response.getOrderNumber());
+        orderConfirmDTO.setDeliveryDate(response.getDeliveryDate());
+
+
         return orderConfirmDTO;
     }
-    //create order (requires:
-    //inventory-service: check availability + change quantity)
-    //order-service: post order
 
     public void withdrawProduct(String sku, int quantity) {
         inventoryWebclient.inventoryWebClient()
-                .method(HttpMethod.GET)
+                .method(HttpMethod.PATCH)
                 .uri(uriBuilder -> uriBuilder
                         .path("api/product/withdraw")
-                        .queryParam("sku", sku, "quantity", quantity).build())
+                        .queryParam("sku", sku)
+                        .queryParam("quantity", quantity)
+                        .build())
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError,
                         error -> Mono.error(new ProductNotFoundException("SKU: " + sku + " is incorrect or doesn't exist")))

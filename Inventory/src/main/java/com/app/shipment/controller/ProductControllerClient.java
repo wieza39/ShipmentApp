@@ -26,7 +26,7 @@ public class ProductControllerClient {
     }
 
     @PatchMapping("/withdraw")
-    public ResponseEntity<ProductResponse> withdrawProduct(@RequestParam String sku, int quantity) {
+    public ResponseEntity<ProductResponse> withdrawProduct(@RequestParam String sku, Integer quantity) {
         ProductResponse product = productServiceClient.withdrawProductBySku(sku, quantity);
         return ResponseEntity.ok(product);
     }
