@@ -34,4 +34,8 @@ public class CustomerServiceClient {
         }
         return customerDetails;
     }
+
+    public void addNewAddress(Address address, String login) {
+        customerService.addNewAddress(address, login);
+    }
 }

@@ -1,10 +1,13 @@
 package com.app.shipment.ordermanagment.controller;
 
+import com.app.shipment.ordermanagment.model.AddressDTO;
 import com.app.shipment.ordermanagment.model.CustomerDTO;
 import com.app.shipment.ordermanagment.model.OrderConfirmDTO;
 import com.app.shipment.ordermanagment.model.OrderDTO;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import com.app.shipment.ordermanagment.service.OrderManageService;
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,5 +42,11 @@ public class OrderManageController {
     public ResponseEntity<OrderConfirmDTO> addOrder(@RequestBody OrderDTO orderDTO) {
         OrderConfirmDTO orderConfirm = orderManageService.order(orderDTO);
         return ResponseEntity.ok(orderConfirm);
+    }
+
+    @PostMapping("customer/address/new")
+    public ResponseEntity<Void> addAddress(@RequestBody AddressDTO address, @RequestParam String login) {
+        orderManageService.addNewAddress(address, login);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

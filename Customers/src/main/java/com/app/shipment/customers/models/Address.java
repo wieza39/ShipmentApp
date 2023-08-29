@@ -44,7 +44,7 @@ public class Address {
     private String flat;
 
     @Column(name = "postalcode")
-    private String postalcode;
+    private String postalCode;
 
     @Column(name = "city")
     private String city;

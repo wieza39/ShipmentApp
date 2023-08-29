@@ -1,7 +1,9 @@
 package com.app.shipment.ordermanagment.service;
 
 import com.app.shipment.ordermanagment.config.WebClientBuild;
+import com.app.shipment.ordermanagment.exceptions.AddressAlreadyExistException;
 import com.app.shipment.ordermanagment.exceptions.ProductNotFoundException;
+import com.app.shipment.ordermanagment.model.AddressDTO;
 import com.app.shipment.ordermanagment.model.CustomerDTO;
 import com.app.shipment.ordermanagment.model.OrderConfirmDTO;
 import com.app.shipment.ordermanagment.model.OrderDTO;
@@ -10,6 +12,7 @@ import com.app.shipment.ordermanagment.model.OrderedProductDTO;
 import com.app.shipment.ordermanagment.model.ProductInfoResponse;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
@@ -48,6 +51,21 @@ public class OrderManageService {
 
 
         return orderConfirmDTO;
+    }
+
+    public void addNewAddress(AddressDTO addressDTO, String login) {
+        customerWebclient.customerWebClient()
+                .post()
+                .uri(uriBuilder -> uriBuilder
+                        .path("api/customers/address/new")
+                        .queryParam("login", login)
+                        .build())
+                .bodyValue(addressDTO)
+                .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError,
+                        error -> Mono.error(new AddressAlreadyExistException("")))
+                .bodyToMono(Void.class)
+                .block();
     }
 
     public void withdrawProduct(String sku, int quantity) {

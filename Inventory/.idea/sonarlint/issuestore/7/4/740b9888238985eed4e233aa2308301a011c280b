@@ -1,0 +1,23 @@
+
+L
+java:S1066/"/Merge this if statement with the enclosing one.(ŒëÚ—8¬‹ô„1
+k
+java:S3655i"NCall "product.isPresent()" or "!product.isEmpty()" before accessing the value.(‘üä•8Œ¦ñ„1
+
+java:S1186L"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ìÿ»ê8¦ñ„1
+£
+java:S1186]"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÔóÌáûÿÿÿÿ8¦ñ„1
+
+java:S1186a"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(æ¶¬Â8¦ñ„1
+£
+java:S1186m"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(åù³ìùÿÿÿÿ8¦ñ„1
+
+java:S1186o"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(½ïÇç8¦ñ„1
+
+java:S1186q"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ß”­š8¦ñ„1
+£
+java:S1186u"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ú¥áëûÿÿÿÿ8¦ñ„1
+o
+java:S6204:"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8â¦ñ„1
+o
+java:S6204E"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹8ç¦ñ„1

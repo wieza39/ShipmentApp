@@ -46,7 +46,7 @@ public class Customer {
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer")
     @JsonManagedReference
     private List<Address> addressList = new ArrayList<>();
 
